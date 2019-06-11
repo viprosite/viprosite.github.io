@@ -181,6 +181,7 @@
   
   <article class="passage-article">
     <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function fetchPosts()&#123;</span><br><span class="line">  function add(x,y)&#123;    </span><br><span class="line">     x+y             //内层函数执行结果没有返回</span><br><span class="line">  &#125;</span><br><span class="line">  return add(1,2)  //因为内层函数没有返回值，所以此处return值为空</span><br><span class="line">&#125;</span><br><span class="line">console.log(fetchPosts())   -----undefined</span><br><span class="line">-</span><br><span class="line">以上代码段执行顺序：</span><br><span class="line">7.1调用fetchPosts函数</span><br><span class="line">5.1 先调用内层add函数-执行add函数体3</span><br><span class="line">5.2 后return，因add函数没有返回值，此处return值为空</span><br><span class="line">7.2打印undefined</span><br><span class="line">---</span><br><span class="line">function fetchPosts()&#123;</span><br><span class="line">  function add(x,y)&#123;    //内层函数执行结果没有返回</span><br><span class="line">    return x+y</span><br><span class="line">  &#125;</span><br><span class="line">  return add(1,2)  //因为内层函数没有返回值，所以此处return值为空</span><br><span class="line">&#125;</span><br><span class="line">console.log(fetchPosts())</span><br><span class="line">-</span><br><span class="line">17行x+y的结果被返回给19行处，即fetchPosts函数的返回值</span><br></pre></td></tr></table></figure>
+<h5 id="另外一种情形："><a href="#另外一种情形：" class="headerlink" title="另外一种情形："></a>另外一种情形：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function f()&#123;</span><br><span class="line">    return console.log(1)</span><br><span class="line">&#125;</span><br><span class="line">f()</span><br><span class="line">--</span><br><span class="line">1					//先对return后的表达式处理</span><br><span class="line">undefined			//再返回console的返回值（没有返回值undefined）</span><br></pre></td></tr></table></figure>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -188,7 +189,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#另外一种情形："><span class="toc-text">另外一种情形：</span></a></li></ol>
   </div>
 </aside>
   
